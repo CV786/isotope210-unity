@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 10
   m_LinearDamping: 4
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -168,4 +168,4 @@ MonoBehaviour:
   bubble: {fileID: 1454628827671942777, guid: fce3134ca8344bd4aa9736c301479d67, type: 3}
   destroyTimer: 15
   targetTag: Bubble
-  windVelocityFactor: 60
+  windVelocityFactor: 40

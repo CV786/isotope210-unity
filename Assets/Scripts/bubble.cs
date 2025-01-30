@@ -7,13 +7,12 @@ public class Bubble : MonoBehaviour
     [Header("Collision Settings")]
     public string playerTag = "Player";
     public string victimTag = "Victim";
-    public GameObject objectToSpawn; // Prefab to spawn upon collision
-    public AudioClip collisionSound; // Sound effect to play
-    public AudioClip[] soundEffects;
 
     [Header("Audio Settings")]
     public float volume = .8f; // Volume of the sound effect
     private AudioSource audioSource; // Audio source for playing sound
+    public AudioClip selectedClip; // Sound effect to play
+    public AudioClip[] bounceSoundList;
 
     private Rigidbody2D rb;
 
@@ -39,62 +38,41 @@ public class Bubble : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        var speed = lastVelocity.magnitude;
-        var direction = Vector3.Reflect(lastVelocity.normalized, coll.contacts[0].normal);
-
-        rb.linearVelocity = direction * Mathf.Max(speed, 3f);
+        //PlayRandomSound();
 
 
-        //dissolve player
-        if (coll.gameObject.CompareTag(playerTag))
+        //collision w/ organics - dissolve
+        if ((coll.gameObject.CompareTag(victimTag)) || (coll.gameObject.CompareTag(playerTag)))
         {
-            Destroy(coll.gameObject);
 
-            // Play the collision sound
-            if (collisionSound != null)
+            //pass over the organic object
+            Physics2D.IgnoreCollision(coll.collider, GetComponent<Collider2D>());
+
+            // Trigger a function on the organic object.
+            Organics organic = coll.gameObject.GetComponent<Organics>();
+            if (organic != null)
             {
-                PlayRandomSound();
-                //audioSource.PlayOneShot(collisionSound, volume); //play bubble effect
+                organic.ContactAcid();  // Call the function on the organic object.
             }
 
-            // Spawn a new object at the collision point
-            if (objectToSpawn != null)
-            {
-                Instantiate(objectToSpawn, coll.contacts[0].point, Quaternion.identity);
-            }
+        } else
+        {
+
+
+            var speed = lastVelocity.magnitude;
+            var direction = Vector3.Reflect(lastVelocity.normalized, coll.contacts[0].normal);
+
+            rb.linearVelocity = direction * Mathf.Max(speed, 3f);
         }
 
-        //dissolve victim
-        if (coll.gameObject.CompareTag(victimTag))
-        {
-            // Destroy the object with the specified tag
-            Destroy(coll.gameObject);
-
-            // Play the collision sound
-            if (collisionSound != null)
-            {
-                PlayRandomSound();
-                //audioSource.PlayOneShot(collisionSound, volume); //play bubble effect
-            }
-
-            // Spawn a new object at the collision point
-            if (objectToSpawn != null)
-            {
-                Instantiate(objectToSpawn, coll.contacts[0].point, Quaternion.identity);
-            }
-
-        }
     }
 
 
     void PlayRandomSound()
     {
-        if (soundEffects.Length > 0)
+        if (bounceSoundList.Length > 0)
         {
-            // Select a random sound effect from the list
-            AudioClip selectedClip = soundEffects[Random.Range(0, soundEffects.Length)];
-
-            // Play the sound effect
+            selectedClip = bounceSoundList[Random.Range(0, bounceSoundList.Length)];
             audioSource.PlayOneShot(selectedClip, volume);
         }
         else

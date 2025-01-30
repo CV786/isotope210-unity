@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3320652541234870315}
   - component: {fileID: 150870053072577200}
   - component: {fileID: 2985046896726899627}
+  - component: {fileID: 8451414231023411406}
   m_Layer: 0
-  m_Name: EmployeeVictim1_0
+  m_Name: victim
   m_TagString: Victim
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,3 +177,36 @@ CapsuleCollider2D:
   m_Offset: {x: -0.11262682, y: 0.32809588}
   m_Size: {x: 0.65619177, y: 0.65619177}
   m_Direction: 0
+--- !u!114 &8451414231023411406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5803674444237597578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41be420f257cebd4cbe21eb0bdb8177f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  corpseAcid: {fileID: 6172613266623033810, guid: 1b3c983736b9d0742bc1bd1b334656d7, type: 3}
+  volume: 0.8
+  selectedClip: {fileID: 0}
+  deathVoiceList:
+  - {fileID: 8300000, guid: 5b25b2c78dd1a3f46be454f0954bacb8, type: 3}
+  - {fileID: 8300000, guid: 62b42b29e38410349ab978357f4a98dd, type: 3}
+  - {fileID: 8300000, guid: 6e4b2949f0a97c442b20ea03ab84b27f, type: 3}
+  - {fileID: 8300000, guid: 8d36224cfc9f7734da3557247af0b307, type: 3}
+  - {fileID: 8300000, guid: a73f2acd8fb9acd43b97ca559b5d18fe, type: 3}
+  - {fileID: 8300000, guid: c977d2c409dd4134db9dbf60a4c0b6c5, type: 3}
+  - {fileID: 8300000, guid: bc52a394c5bc0c4479fa68cd6e7b8ec7, type: 3}
+  - {fileID: 8300000, guid: 0553bb500196ffe48a3134ad49036f14, type: 3}
+  - {fileID: 8300000, guid: fa05028b94a24644db52c0a8a07a9e62, type: 3}
+  - {fileID: 8300000, guid: 81eb3c3f8f1a2804391cfcbe97c9a802, type: 3}
+  - {fileID: 8300000, guid: 5decb0713f6d37741868c87e4007f91c, type: 3}
+  - {fileID: 8300000, guid: 59a3bfc46bf7c5d4ab067600b205bc17, type: 3}
+  - {fileID: 8300000, guid: fa16899e7d6084843bfc745a98078e19, type: 3}
+  - {fileID: 8300000, guid: 2a62c7cb0205fb944b88ceaee9ae9494, type: 3}
+  - {fileID: 8300000, guid: 77a5a45e0c848394490278471e7496fe, type: 3}
+  - {fileID: 8300000, guid: 04958d91ca9f0634fab6598f8b12acc9, type: 3}
+  - {fileID: 8300000, guid: a58d07787c61e63479eb8ae4d0f2529c, type: 3}
