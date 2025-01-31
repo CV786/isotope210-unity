@@ -126,6 +126,10 @@ MonoBehaviour:
   volume: 1
   audioSource: {fileID: 0}
   deathVoiceList:
-  - {fileID: 8300000, guid: 5b25b2c78dd1a3f46be454f0954bacb8, type: 3}
-  - {fileID: 8300000, guid: fa05028b94a24644db52c0a8a07a9e62, type: 3}
-  - {fileID: 8300000, guid: c977d2c409dd4134db9dbf60a4c0b6c5, type: 3}
+  - {fileID: 8300000, guid: 111bcc441967e164cac20441a07e4e24, type: 3}
+  - {fileID: 8300000, guid: 0ab207378de36304a8aa3c3635d91af0, type: 3}
+  - {fileID: 8300000, guid: fa16899e7d6084843bfc745a98078e19, type: 3}
+  - {fileID: 8300000, guid: 111bcc441967e164cac20441a07e4e24, type: 3}
+  - {fileID: 8300000, guid: 0ab207378de36304a8aa3c3635d91af0, type: 3}
+  - {fileID: 8300000, guid: 0ab207378de36304a8aa3c3635d91af0, type: 3}
+  - {fileID: 8300000, guid: 111bcc441967e164cac20441a07e4e24, type: 3}

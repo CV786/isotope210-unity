@@ -16,57 +16,57 @@ public class Bubble : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private Vector3 lastVelocity;
+    private Vector2 lastVelocity; // Store the last velocity in FixedUpdate
 
-    //to slow velocity
-    public float dampFactor;
+    // To slow down the velocity
+    public float dampFactor = 0.99f; // Damping factor to reduce speed
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        //attach audio source
+        // Attach audio source
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
     }
 
     private void FixedUpdate()
     {
+        // Store the current velocity for the next collision
         lastVelocity = rb.linearVelocity;
-
-        rb.linearVelocity = rb.linearVelocity * dampFactor;
     }
+
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        //PlayRandomSound();
-
-
-        //collision w/ organics - dissolve
+        // Check if the bubble collides with Player or Victim
         if ((coll.gameObject.CompareTag(victimTag)) || (coll.gameObject.CompareTag(playerTag)))
         {
+            // Reapply the stored velocity, adjusting it for damping
+            Vector2 newVelocity = lastVelocity * dampFactor;
 
-            //pass over the organic object
+            // Apply the damped velocity to the bubble
+            rb.linearVelocity = newVelocity;
+
+            // Ignore the collision between the bubble and the organic object
             Physics2D.IgnoreCollision(coll.collider, GetComponent<Collider2D>());
 
-            // Trigger a function on the organic object.
+            // Trigger a function on the organic object
             Organics organic = coll.gameObject.GetComponent<Organics>();
             if (organic != null)
             {
-                organic.ContactAcid();  // Call the function on the organic object.
+                organic.ContactAcid();  // Call the function on the organic object
             }
-
-        } else
+        }
+        else
         {
-
-
+            // Handle the bouncing effect if it's not an organic object
             var speed = lastVelocity.magnitude;
-            var direction = Vector3.Reflect(lastVelocity.normalized, coll.contacts[0].normal);
+            var direction = Vector2.Reflect(lastVelocity.normalized, coll.contacts[0].normal);
 
+            // Reapply the reflected velocity to the bubble
             rb.linearVelocity = direction * Mathf.Max(speed, 3f);
         }
-
     }
-
 
     void PlayRandomSound()
     {
@@ -77,8 +77,7 @@ public class Bubble : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("no effect assigned");
+            Debug.LogWarning("No effect assigned");
         }
     }
-
 }
