@@ -34,6 +34,12 @@ public class Bubble : MonoBehaviour
     {
         // Store the current velocity for the next collision
         lastVelocity = rb.linearVelocity;
+
+        // Reapply the stored velocity, adjusting it for damping
+        Vector2 newVelocity = lastVelocity * dampFactor;
+
+        // Apply the damped velocity to the bubble
+        rb.linearVelocity = newVelocity;
     }
 
     private void OnCollisionEnter2D(Collision2D coll)
@@ -41,11 +47,6 @@ public class Bubble : MonoBehaviour
         // Check if the bubble collides with Player or Victim
         if ((coll.gameObject.CompareTag(victimTag)) || (coll.gameObject.CompareTag(playerTag)))
         {
-            // Reapply the stored velocity, adjusting it for damping
-            Vector2 newVelocity = lastVelocity * dampFactor;
-
-            // Apply the damped velocity to the bubble
-            rb.linearVelocity = newVelocity;
 
             // Ignore the collision between the bubble and the organic object
             Physics2D.IgnoreCollision(coll.collider, GetComponent<Collider2D>());

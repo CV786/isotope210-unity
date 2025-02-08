@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2098263797395843556}
   - component: {fileID: -305782727379532161}
   - component: {fileID: 2235111586206440535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wind prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,5 +167,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubble: {fileID: 1454628827671942777, guid: fce3134ca8344bd4aa9736c301479d67, type: 3}
   destroyTimer: 15
+  playerTag: Player
   targetTag: Bubble
-  windVelocityFactor: 400
+  windVelocityFactor: 5
